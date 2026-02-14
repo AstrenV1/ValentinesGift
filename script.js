@@ -3,18 +3,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- DATABASE ---
     const profiles = {
         "maelle": {
-            songID: "LjhCEhWiKXk", // Bruno Mars - Just the Way You Are
-            image: "maelle.jpg",
+            songID: "LjhCEhWiKXk", 
+            image: "maelle.jpg", // The Surprise Gift Image
+            polaroid: "maelle_photo.jpg", // The Photo of you two
             letter: "Dear Maelle,\n\nYou are the sunshine in my day. I love how you always smile..."
         },
         "romane": {
-            songID: "450p7goxZqg", // John Legend - All of Me
+            songID: "450p7goxZqg", 
             image: "romane.jpg",
+            polaroid: "romane_photo.jpg",
             letter: "My Dearest Romane,\n\nEvery moment with you is an adventure. Thank you for being my rock..."
         },
         "celine": {
-            songID: "lp-EO5I60KA", // Ed Sheeran - Thinking Out Loud
+            songID: "lp-EO5I60KA", 
             image: "celine.jpg",
+            polaroid: "celine_photo.jpg",
             letter: "To Celine,\n\nYou make the world a brighter place. I cherish every memory we have made..."
         }
     };
@@ -28,37 +31,34 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- 1. Open Gift Logic ---
     function openGift() {
-        // ERROR CHECK 1: Is the HTML input missing?
-        if (!nameInput) {
-            alert("Error: The 'name-input' box is missing from your HTML file.");
-            return;
-        }
+        if (!nameInput) { alert("Error: Input box missing"); return; }
 
         const rawName = nameInput.value;
-        const name = rawName.toLowerCase().trim(); // Converts "Maelle " to "maelle"
+        const name = rawName.toLowerCase().trim();
 
-        // ERROR CHECK 2: Is the name valid?
         if (!name || !profiles[name]) {
-            alert("Name not recognized! Please try: Maelle, Romane, or Celine");
+            alert("Name not found! Try: Maelle, Romane, or Celine");
             return;
         }
 
         const data = profiles[name];
 
-        // ERROR CHECK 3: Do we have the HTML elements to put the data in?
+        // CHECK HTML ELEMENTS
         const iframe = document.getElementById('youtube-frame');
         const surpriseImg = document.getElementById('surprise-img');
+        const polaroidImg = document.getElementById('polaroid-img');
         const letterP = document.getElementById('letter-content');
         const greetingH2 = document.getElementById('personal-greeting');
 
-        if (!iframe || !surpriseImg || !letterP || !greetingH2) {
-            alert("Error: Your HTML is missing IDs (youtube-frame, surprise-img, letter-content, or personal-greeting). Please update index.html");
+        if (!iframe || !surpriseImg || !letterP || !greetingH2 || !polaroidImg) {
+            alert("Error: Missing IDs in HTML. Did you copy the new index.html?");
             return;
         }
 
         // --- LOAD DATA ---
         iframe.src = `https://www.youtube.com/embed/${data.songID}`;
         surpriseImg.src = data.image;
+        polaroidImg.src = data.polaroid;
         letterP.innerHTML = data.letter.replace(/\n/g, "<br>");
         greetingH2.innerText = `FOR ${rawName.toUpperCase()}`;
 
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. Floating Emoji Hearts ---
+    // --- 3. Floating Emoji Hearts (Bottom to Top) ---
     function createHeart() {
         const heart = document.createElement('div');
         heart.classList.add('heart');
