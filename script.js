@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "romane": {
             songID: "IpPIK4T068s", // Joji - Test Drive
             image: "romane.jpg",
-            polaroid: "romane_photo.jpg",
+            polaroid: "romane_photo.JPG",
             letter: "Coucou Romane,\n\nJoyeuse Saint-Valentin. J'ai créé ce site pour vous car je cherchais un cadeau original. Tu es une personne pleine de vitalité et nous avons tous besoin de ça de temps en temps. J'aime ta capacité à être reconnaissante, à dire merci pour ces petites choses auxquelles je ne pense même pas moi-même. Tu me fais penser à un labrador : toujours joyeuse et débordante d'une belle énergie.\n\nBisous,\nMora"
         }
     };
@@ -121,3 +121,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
