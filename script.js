@@ -1,20 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- DATABASE ---
-    // MAKE SURE ALL NAMES ARE LOWERCASE HERE (e.g., "maelle", NOT "Maelle")
     const profiles = {
         "maelle": {
-            songID: "LjhCEhWiKXk", // Bruno Mars
-            image: "maelle.jpg",   // Make sure this file exists!
+            songID: "LjhCEhWiKXk", // Bruno Mars - Just the Way You Are
+            image: "maelle.jpg",
             letter: "Dear Maelle,\n\nYou are the sunshine in my day. I love how you always smile..."
         },
         "romane": {
-            songID: "450p7goxZqg", // John Legend
+            songID: "450p7goxZqg", // John Legend - All of Me
             image: "romane.jpg",
             letter: "My Dearest Romane,\n\nEvery moment with you is an adventure. Thank you for being my rock..."
         },
         "celine": {
-            songID: "lp-EO5I60KA", // Ed Sheeran
+            songID: "lp-EO5I60KA", // Ed Sheeran - Thinking Out Loud
             image: "celine.jpg",
             letter: "To Celine,\n\nYou make the world a brighter place. I cherish every memory we have made..."
         }
@@ -29,30 +28,41 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- 1. Open Gift Logic ---
     function openGift() {
-        // SAFETY CHECK: Did we find the input box?
+        // ERROR CHECK 1: Is the HTML input missing?
         if (!nameInput) {
-            alert("Error: Text box not found in HTML!");
+            alert("Error: The 'name-input' box is missing from your HTML file.");
             return;
         }
 
         const rawName = nameInput.value;
-        const name = rawName.toLowerCase().trim(); // Auto-converts "Maelle" to "maelle"
+        const name = rawName.toLowerCase().trim(); // Converts "Maelle " to "maelle"
 
-        // CHECK IF NAME IS VALID
+        // ERROR CHECK 2: Is the name valid?
         if (!name || !profiles[name]) {
-            alert("Name not found! Please type: Maelle, Romane, or Celine");
+            alert("Name not recognized! Please try: Maelle, Romane, or Celine");
             return;
         }
 
         const data = profiles[name];
 
-        // Set Content
-        document.getElementById('youtube-frame').src = `https://www.youtube.com/embed/${data.songID}`;
-        document.getElementById('surprise-img').src = data.image;
-        document.getElementById('letter-content').innerHTML = data.letter.replace(/\n/g, "<br>");
-        document.getElementById('personal-greeting').innerText = `FOR ${rawName.toUpperCase()}`;
+        // ERROR CHECK 3: Do we have the HTML elements to put the data in?
+        const iframe = document.getElementById('youtube-frame');
+        const surpriseImg = document.getElementById('surprise-img');
+        const letterP = document.getElementById('letter-content');
+        const greetingH2 = document.getElementById('personal-greeting');
 
-        // Animation
+        if (!iframe || !surpriseImg || !letterP || !greetingH2) {
+            alert("Error: Your HTML is missing IDs (youtube-frame, surprise-img, letter-content, or personal-greeting). Please update index.html");
+            return;
+        }
+
+        // --- LOAD DATA ---
+        iframe.src = `https://www.youtube.com/embed/${data.songID}`;
+        surpriseImg.src = data.image;
+        letterP.innerHTML = data.letter.replace(/\n/g, "<br>");
+        greetingH2.innerText = `FOR ${rawName.toUpperCase()}`;
+
+        // --- ANIMATION ---
         giftBox.classList.add('open');
         actionBtn.innerText = "OPENING...";
         spawnConfetti();
@@ -68,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1500);
     }
 
-    // Enable "Enter" key
     if (nameInput) {
         nameInput.addEventListener("keypress", function(event) {
             if (event.key === "Enter") openGift();
