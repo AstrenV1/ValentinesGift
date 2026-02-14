@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Valentines</title>
+    <title>Joyeuse Saint-Valentin</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -27,28 +27,28 @@
         </div>
 
         <div class="input-group">
-            <label for="name-input">WHO IS THIS FOR?</label>
-            <input type="text" id="name-input" placeholder="Enter Name..." autocomplete="off">
+            <label for="name-input">POUR QUI EST-CE ?</label>
+            <input type="text" id="name-input" placeholder="Entrez un prénom..." autocomplete="off">
         </div>
         
         <button id="action-btn" class="pixel-btn">
-            OPEN GIFT
+            OUVRIR LE CADEAU
         </button>
 
         <div class="message-box">
-            Type your name above to unlock
+            Entrez votre prénom pour déverrouiller
         </div>
     </section>
 
     <section id="main-content" class="hidden">
-        <h1 class="main-title">HAPPY VALENTINES</h1>
+        <h1 class="main-title">JOYEUSE SAINT-VALENTIN</h1>
         
         <h2 id="personal-greeting" class="subtitle"></h2>
         
         <div class="card-grid">
             
             <div class="pixel-card blue-theme">
-                <div class="card-header">OUR SONG</div>
+                <div class="card-header">NOTRE CHANSON</div>
                 <div class="card-body">
                     <div class="cassette">
                         <div class="cassette-label">
@@ -56,10 +56,10 @@
                                 <div class="circle"></div>
                                 <div class="circle"></div>
                             </div>
-                            <span class="tape-text">SIDE A</span>
+                            <span class="tape-text">FACE A</span>
                         </div>
                     </div>
-                    <p class="song-title">Just The Way You Are ...</p>
+                    <p class="song-title">Une musique pour toi...</p>
                     <div class="video-placeholder">
                         <iframe 
                             id="youtube-frame"
@@ -76,40 +76,36 @@
             </div>
 
             <div class="pixel-card white-theme">
-                <div class="card-header">A LETTER</div>
+                <div class="card-header">UNE LETTRE</div>
                 <div class="card-body letter-body">
                     <div class="polaroid">
-                        <img id="polaroid-img" src="" alt="Us" class="polaroid-img">
-                        <span class="caption">Forever & Always</span>
-                    </div>
+                        <img id="polaroid-img" src="" alt="Nous" class="polaroid-img">
+                        </div>
                     <div class="letter-text">
-                        <p id="letter-content">Loading your letter...</p>
+                        <p id="letter-content">Chargement de la lettre...</p>
                     </div>
-                    </div>
+                </div>
             </div>
 
             <div class="pixel-card pink-theme">
-                <div class="card-header">FOR YOU</div>
+                <div class="card-header">POUR TOI</div>
                 <div class="card-body center-content">
                     
                     <div id="surprise-placeholder" class="canvas-placeholder">
-                        [ Empty Canvas ]
+                        [ Vide ]
                     </div>
 
                     <img id="surprise-img" src="" alt="Surprise!" class="hidden surprise-img-style">
 
-                    <p class="small-text">A unique surprise, selected just for you.</p>
+                    <p class="small-text">Une surprise unique, choisie juste pour toi.</p>
                     
-                    <button id="reveal-btn" class="pixel-btn-small green-btn">Reveal Surprise</button>
+                    <button id="reveal-btn" class="pixel-btn-small green-btn">Révéler la surprise</button>
                 </div>
             </div>
 
         </div>
 
-        <footer class="footer">
-            Made with <span style="color:red">❤️</span> and Pixel Art
-        </footer>
-    </section>
+        </section>
 
     <script src="script.js"></script>
 </body>
