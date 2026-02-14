@@ -12,22 +12,10 @@ body {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden;
 }
 
-/* --- FLOATING EMOJI STYLE --- */
+/* Floating Emojis */
 .heart {
-    position: absolute;
-    /* Start BELOW the screen */
-    top: 105vh; 
-    
-    /* Text styling for Emojis */
-    font-size: 24px;
-    line-height: 1;
-    user-select: none;
-    
-    /* Animation */
-    animation: floatUp linear forwards; 
+    position: absolute; top: 105vh; font-size: 24px; line-height: 1; user-select: none; animation: floatUp linear forwards; 
 }
-
-/* Animation: Move from Bottom (0) to Top (-120vh) */
 @keyframes floatUp {
     0% { transform: translateY(0) scale(1); opacity: 0; }
     10% { opacity: 1; }
@@ -39,6 +27,7 @@ body {
     height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem; position: relative; z-index: 10; transition: opacity 1s ease;
 }
 
+/* Name Input Styling */
 .input-group { text-align: center; margin-bottom: 10px; }
 .input-group label { display: block; font-size: 10px; margin-bottom: 10px; color: #e91e63; }
 #name-input {
