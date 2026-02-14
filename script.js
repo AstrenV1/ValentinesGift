@@ -1,24 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- DATABASE ---
+    // --- BASE DE DONNÉES ---
     const profiles = {
-        "maelle": {
-            songID: "LjhCEhWiKXk", 
-            image: "maelle.jpg", // The Surprise Gift Image
-            polaroid: "maelle_photo.jpg", // The Photo of you two
-            letter: "Dear Maelle,\n\nYou are the sunshine in my day. I love how you always smile..."
-        },
-        "romane": {
-            songID: "450p7goxZqg", 
-            image: "romane.jpg",
-            polaroid: "romane_photo.jpg",
-            letter: "My Dearest Romane,\n\nEvery moment with you is an adventure. Thank you for being my rock..."
-        },
         "celine": {
-            songID: "lp-EO5I60KA", 
+            songID: "dPRYEZx01qU", // Beirut - Nantes
             image: "celine.jpg",
             polaroid: "celine_photo.jpg",
-            letter: "To Celine,\n\nYou make the world a brighter place. I cherish every memory we have made..."
+            letter: "Coucou Céline,\n\nJoyeuse Saint-Valentin. Comme je ne trouvais pas de cadeau matériel à la hauteur, j'ai créé ce site spécialement pour vous. Je voulais simplement vous remercier, toi et Martin, pour tout ce que vous avez fait pour moi et ma famille ; c'est une chose que je ne vous dis pas assez souvent. Votre présence dans ma vie est un véritable réconfort. Vous êtes comme un lit chaud au cœur de l'hiver : cette sensation de tranquillité absolue, la nuit, bien au chaud sous la couverture.\n\nbisous,\nMora"
+        },
+        "maelle": {
+            songID: "ll5uAeEanjY", // Lorde - Melodrama
+            image: "maelle.jpg", 
+            polaroid: "maelle_photo.jpg",
+            letter: "Votre Altesse,\n\njoyeuse saint valentin. J'ai cree ce site pour vous comme jai pas trop d'idée de cadeau. En toute honnêteté, tu es une personne avec qui il est si agréable de passer du temps. J'adore t'écouter me raconter ta journée et ta vie ; c'est un moment où je peux mettre mon cerveau sur pause et simplement me laisser porter par ta voix. Tu es comme un bon chocolat chaud : tu es d'une grande douceur, capable de redonner de l'énergie quand il le faut, mais aussi d'apporter le calme et l'apaisement.\n\nBisous,\nMora"
+        },
+        "romane": {
+            songID: "IpPIK4T068s", // Joji - Test Drive
+            image: "romane.jpg",
+            polaroid: "romane_photo.jpg",
+            letter: "Coucou Romane,\n\nJoyeuse Saint-Valentin. J'ai créé ce site pour vous car je cherchais un cadeau original. Tu es une personne pleine de vitalité et nous avons tous besoin de ça de temps en temps. J'aime ta capacité à être reconnaissante, à dire merci pour ces petites choses auxquelles je ne pense même pas moi-même. Tu me fais penser à un labrador : toujours joyeuse et débordante d'une belle énergie.\n\nBisous,\nMora"
         }
     };
 
@@ -29,21 +29,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const heartsContainer = document.getElementById('hearts-container');
     const nameInput = document.getElementById('name-input');
     
-    // --- 1. Open Gift Logic ---
+    // --- 1. Logique d'ouverture ---
     function openGift() {
-        if (!nameInput) { alert("Error: Input box missing"); return; }
+        if (!nameInput) { alert("Erreur: Champ de texte manquant"); return; }
 
         const rawName = nameInput.value;
         const name = rawName.toLowerCase().trim();
 
         if (!name || !profiles[name]) {
-            alert("Name not found! Try: Maelle, Romane, or Celine");
+            alert("Nom introuvable ! Essayez : Celine, Maelle, ou Romane");
             return;
         }
 
         const data = profiles[name];
 
-        // CHECK HTML ELEMENTS
+        // Vérification des éléments HTML
         const iframe = document.getElementById('youtube-frame');
         const surpriseImg = document.getElementById('surprise-img');
         const polaroidImg = document.getElementById('polaroid-img');
@@ -51,20 +51,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const greetingH2 = document.getElementById('personal-greeting');
 
         if (!iframe || !surpriseImg || !letterP || !greetingH2 || !polaroidImg) {
-            alert("Error: Missing IDs in HTML. Did you copy the new index.html?");
+            alert("Erreur: IDs manquants dans le HTML.");
             return;
         }
 
-        // --- LOAD DATA ---
+        // --- Chargement des données ---
         iframe.src = `https://www.youtube.com/embed/${data.songID}`;
         surpriseImg.src = data.image;
         polaroidImg.src = data.polaroid;
         letterP.innerHTML = data.letter.replace(/\n/g, "<br>");
-        greetingH2.innerText = `FOR ${rawName.toUpperCase()}`;
+        greetingH2.innerText = `POUR ${rawName.toUpperCase()}`;
 
-        // --- ANIMATION ---
+        // --- Animation ---
         giftBox.classList.add('open');
-        actionBtn.innerText = "OPENING...";
+        actionBtn.innerText = "OUVERTURE...";
         spawnConfetti();
         
         setTimeout(() => {
@@ -87,19 +87,19 @@ document.addEventListener('DOMContentLoaded', () => {
     giftBox.addEventListener('click', openGift);
     actionBtn.addEventListener('click', openGift);
 
-    // --- 2. Reveal Surprise Logic ---
+    // --- 2. Révélation Surprise ---
     const revealBtn = document.getElementById('reveal-btn');
     if (revealBtn) {
         revealBtn.addEventListener('click', () => {
             document.getElementById('surprise-placeholder').classList.add('hidden');
             document.getElementById('surprise-img').classList.remove('hidden');
             spawnConfetti();
-            revealBtn.innerText = "Surprise! ❤️";
+            revealBtn.innerText = "Surprise ! ❤️";
             revealBtn.disabled = true;
         });
     }
 
-    // --- 3. Floating Emoji Hearts (Bottom to Top) ---
+    // --- 3. Coeurs Flottants (Emojis) ---
     function createHeart() {
         const heart = document.createElement('div');
         heart.classList.add('heart');
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     setInterval(createHeart, 300);
 
-    // --- 4. Confetti Burst ---
+    // --- 4. Confetti ---
     function spawnConfetti() {
         for(let i=0; i<30; i++) {
             setTimeout(createHeart, i * 50);
