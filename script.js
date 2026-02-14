@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- DATABASE ---
+    // MAKE SURE ALL NAMES ARE LOWERCASE HERE (e.g., "maelle", NOT "Maelle")
     const profiles = {
         "maelle": {
             songID: "LjhCEhWiKXk", // Bruno Mars
-            image: "maelle.jpg",
+            image: "maelle.jpg",   // Make sure this file exists!
             letter: "Dear Maelle,\n\nYou are the sunshine in my day. I love how you always smile..."
         },
         "romane": {
@@ -28,11 +29,18 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- 1. Open Gift Logic ---
     function openGift() {
-        const rawName = nameInput.value;
-        const name = rawName.toLowerCase().trim();
+        // SAFETY CHECK: Did we find the input box?
+        if (!nameInput) {
+            alert("Error: Text box not found in HTML!");
+            return;
+        }
 
+        const rawName = nameInput.value;
+        const name = rawName.toLowerCase().trim(); // Auto-converts "Maelle" to "maelle"
+
+        // CHECK IF NAME IS VALID
         if (!name || !profiles[name]) {
-            alert("Name not found! Try: Maelle, Romane, or Celine");
+            alert("Name not found! Please type: Maelle, Romane, or Celine");
             return;
         }
 
@@ -60,9 +68,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1500);
     }
 
-    nameInput.addEventListener("keypress", function(event) {
-        if (event.key === "Enter") openGift();
-    });
+    // Enable "Enter" key
+    if (nameInput) {
+        nameInput.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") openGift();
+        });
+    }
+
     giftBox.addEventListener('click', openGift);
     actionBtn.addEventListener('click', openGift);
 
@@ -78,22 +90,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. Floating Emoji Hearts (UPDATED) ---
+    // --- 3. Floating Emoji Hearts ---
     function createHeart() {
         const heart = document.createElement('div');
         heart.classList.add('heart');
-        
-        // Random Emoji Selection
         const emojis = ["❤️", "💖", "💝", "💕", "💗", "💌"];
         heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-        
-        // Random Position & Speed
         heart.style.left = Math.random() * 100 + 'vw';
         heart.style.animationDuration = Math.random() * 3 + 4 + 's';
-        
         const scale = Math.random() * 1 + 0.8; 
         heart.style.transform = `scale(${scale})`;
-        
         heartsContainer.appendChild(heart);
         setTimeout(() => { heart.remove(); }, 7000);
     }
